@@ -1,0 +1,46 @@
+<html>
+<title>bushub</title>
+<head>
+	<script type="text/javascript" src="JS/jquery-2.1.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="html/main.css">
+	<link rel="stylesheet" type="text/css" href="Semantic-UI-1.5.2/dist/semantic.css">
+	<script>
+	//$(function(){
+//$("#submit").click(function(){
+	//var x=$("#source").val();
+	//var y=$("#destination").val();
+    //$.post("/location/details",{source:x, destination:y});
+	//}); 
+//});
+</script>
+</head>
+<body>
+<h1>BUSHUB</h1>
+<p1>MILLION BUSES , BILLION ROUTES</p1>
+<h2> </h2>
+<p2>
+<div class="ui menu inverted">
+  <a class="active item">
+    <i class="home icon"></i> Home
+  </a>
+  <a class="item">
+    <i class="mail icon"></i> Messages
+  </a>
+</div>
+</p2>
+<h3></h3>
+<form action="/location/details" method="POST">
+FROM <input list="Cities" name="source" id="source">
+TO  <input list="Cities" name="destination" id="destination">
+<datalist id="Cities">
+  <option value="delhi">
+  <option value="sonipat">
+  <option value="panipat">
+  <option value="ambala">
+  <option value="chandigarh">
+</datalist> 
+<br><br>
+<input type="submit" value="Find Bus">
+</form> 
+</body>
+</html>

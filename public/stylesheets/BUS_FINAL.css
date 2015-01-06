@@ -1,0 +1,32 @@
+.busDisplay{
+position: absolute;
+height: 400px;
+width: 200px;
+}
+.available{
+	background-image: url(icon_seat.png);
+	height: 30px;
+	width:30px;
+	padding:0;
+}
+
+
+.selected{
+    background-image: url(available_seat.png);
+	height: 30px;
+	width:30px;
+	padding:0;
+}
+
+.booked{
+	 background-image: url(booked_seat.png);
+	height: 30px;
+	width:30px;
+	padding:0;
+
+}
+
+li{
+		position: absolute;
+		display: inline;
+	}

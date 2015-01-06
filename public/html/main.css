@@ -1,0 +1,22 @@
+
+@font-face {
+    font-family: 'headerFont';
+    src: url('Van Helsing.ttf');
+   }
+   @font-face{
+   	font-family: 'mainFont';
+   	src: url('The-American.ttf');
+   }
+
+body{
+	background-color: royalblue;
+}
+h1{ text-align: center;
+font-family: headerFont;
+font-size: 70;
+}
+p1{
+	font-family: mainFont;
+	position: center;
+		font-size: 28;}
+

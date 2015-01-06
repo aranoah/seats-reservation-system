@@ -1,0 +1,15 @@
+var neo4j = require('neo4j');
+    var db = new neo4j.GraphDatabase('http://localhost:7474');
+    match(n:seat),(b:bus{name="hr"})
+    create (n)-[:belongsTo]->(b);
+for(var i=1;i<=51;i++)
+    {var param=i;
+ var query='create(n:seat{seatId:'+param+',seatInfo:null,busId:null})';
+db.query(query,{},function(err,node){
+	 if (err) {
+        console.error('Error saving new node to database:', err);
+    } else {
+        console.log('Node saved to database with id:', node.id);
+    }
+});
+}

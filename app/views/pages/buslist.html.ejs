@@ -1,0 +1,67 @@
+<html>
+<title>BUS LIST</title>
+<head>
+	<style type="text/css"> #dialogue{
+		background-color: D0D0E1;}
+		</style>
+<link rel="stylesheet" type="text/css" href="../html/main.css">
+<link rel="stylesheet" type="text/css" href="../Semantic-UI-1.5.2/dist/semantic.css">
+<link rel="stylesheet" type="text/css" href="../stylesheets/BUS_FINAL.css">
+<script type="text/javascript" src="../JS/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../jquery-ui-1.11.2/jquery-ui.js"></script>
+<script type="text/javascript" src="../JS/buslist.js"></script>
+<script> 
+function viewseat(x,y,z){
+	//$.post("/location/seatLayout",{source:x, destination:y, bus:z},function(data,status){
+var sea=[1,4,2,21];
+		busCreate(sea);
+	//});
+	$("#dialogue").dialog({width:600,height:400},{buttons:[{text:"proceed",click: function(){alert("ok wait, this function isnt ready");}},{text:"close", click: function() { $( this ).dialog( "close" );}}]});
+	$("#dialogue").dialog("open");
+}
+</script>
+</head>
+
+
+
+
+<body>
+<h1>BUSHUB</h1>
+<p1>MILLION BUSES , BILLION ROUTES</p1>
+
+<h2> </h2>
+<p2>
+<div class="ui menu inverted">
+  <a class="active item">
+    <i class="home icon"></i> Home
+  </a>
+  <a class="item">
+    <i class="mail icon"></i> Messages
+  </a>
+</div>
+</p2>
+<h3><b>Buses Available from <%= source %> to <%= destination %> -</b> </h3>
+	<p3><br>
+
+<% if (array.length>0) { %>
+ <table style="width:50%">
+ 	<tr>
+ 	<th>NAME</th>
+ 	<th>PRICE</th>
+    </tr>
+    <% array.forEach(function(n){ %>
+      <tr>
+      <td><%= JSON.stringify(n.b.data['name']) %> </td>
+      <td> <%= JSON.stringify(n.b.data['price']) %></td>
+      <td> <button id="view_seat" onclick="viewseat('<%= source %>','<%= destination %>',<%= JSON.stringify(n.b.data['name']) %>)">View Seat</button></td>
+      </tr>
+    <% }) %>
+  </table>
+<% } %>
+</p3>
+<div id="dialogue"  style="display:none">
+<div id="busgrid"> choose a seat</div>
+</div>
+
+</body>
+</html>

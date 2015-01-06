@@ -1,0 +1,24 @@
+<html>
+<title>shubd</title>
+<head>
+<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="jquery-ui-1.11.2/jquery-ui.js"></script>
+</head>
+<script type="text/javascript">
+$(function(){
+	$( "#view" ).dialog({ autoOpen: false });
+
+$("#click").click(function(){
+	$("#view").dialog({width:500},{position: { my: "left top", at: "right+20 top", of: click }});
+$("#view").dialog("open");
+});
+});
+</script>
+<body>
+	<button id="click">yess</button>
+<div id="view">oh non on </div>
+
+</body>
+
+
+</html>
