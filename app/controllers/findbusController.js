@@ -19,7 +19,7 @@ var params = {
 _self.source=params.initial;
 _self.destination=params.final;
 
-var query='MATCH (b)-[:stop]->(c:location{name:"'+params.initial+'"}),(b)-[:stop]->(d:location{name:"'+params.final+'"}) return b';
+var query='MATCH (b)-[:stop]->(c:location{name:"'+params.initial+'"}),(b)-[:stop]->(d:location{name:"'+params.final+'"}),(x:bus)-[:via]->(b) return x';
 
 
 var store=[];

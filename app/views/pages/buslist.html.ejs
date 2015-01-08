@@ -1,28 +1,67 @@
 <html>
 <title>BUS LIST</title>
 <head>
-	<style type="text/css"> #dialogue{
-		background-color: D0D0E1;}
-		</style>
+	
 <link rel="stylesheet" type="text/css" href="../html/main.css">
 <link rel="stylesheet" type="text/css" href="../Semantic-UI-1.5.2/dist/semantic.css">
-<link rel="stylesheet" type="text/css" href="../stylesheets/BUS_FINAL.css">
+<link rel="styslesheet" type="text/css" href="../stylesheets/BUS_FINAL.css">
+<style type="text/css"> 
+.busDisplay{
+position: absolute;
+height: 400px;
+width: 200px;
+}
+.available{
+  background-image: url(../stylesheets/icon_seat.png);
+  height: 30px;
+  width:30px;
+  padding:0;
+}
+
+
+.selected{
+    background-image: url(../stylesheets/available_seat.png);
+  height: 30px;
+  width:30px;
+  padding:0;
+}
+
+.booked{
+   background-image: url(../stylesheets/booked_seat.png);
+  height: 30px;
+  width:30px;
+  padding:0;
+
+}
+
+li{
+    position: absolute;
+    display: inline;
+  }
+
+#dialogue{
+    background-color: D0D0E1;}
+    </style>
 <script type="text/javascript" src="../JS/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="../jquery-ui-1.11.2/jquery-ui.js"></script>
 <script type="text/javascript" src="../JS/buslist.js"></script>
-<script> 
-function viewseat(x,y,z){
-	//$.post("/location/seatLayout",{source:x, destination:y, bus:z},function(data,status){
-var sea=[1,4,2,21];
-		busCreate(sea);
-	//});
-	$("#dialogue").dialog({width:600,height:400},{buttons:[{text:"proceed",click: function(){alert("ok wait, this function isnt ready");}},{text:"close", click: function() { $( this ).dialog( "close" );}}]});
-	$("#dialogue").dialog("open");
+<script type="text/javascript" src="../JS/pageFunction.js"></script>
+<script>
+
+function goBack(){
+    $(".passengerDetails").hide();
+$(".displayList").show();
 }
+/*var url="/location/seatLayout/confirmBooking?";
+ if(selectedSeat.length>0){
+  for(var i=0;i<selectedSeat.length;i++)
+    {if(i==0)var q= "result"+i+"="+selectedSeat[i];
+    else var q= "&result"+i+"="+selectedSeat[i];
+url=url+q;
+  }}*/
 </script>
+
 </head>
-
-
 
 
 <body>
@@ -40,6 +79,7 @@ var sea=[1,4,2,21];
   </a>
 </div>
 </p2>
+<div class="displayList" title="BUS SEATS">
 <h3><b>Buses Available from <%= source %> to <%= destination %> -</b> </h3>
 	<p3><br>
 
@@ -51,17 +91,36 @@ var sea=[1,4,2,21];
     </tr>
     <% array.forEach(function(n){ %>
       <tr>
-      <td><%= JSON.stringify(n.b.data['name']) %> </td>
-      <td> <%= JSON.stringify(n.b.data['price']) %></td>
-      <td> <button id="view_seat" onclick="viewseat('<%= source %>','<%= destination %>',<%= JSON.stringify(n.b.data['name']) %>)">View Seat</button></td>
+      <td><%= JSON.stringify(n.x.data['name']) %> </td>
+      <td> <%= JSON.stringify(n.x.data['price']) %></td>
+      <td> <button id="view_seat" onclick="viewseat('<%= source %>','<%= destination %>',<%= JSON.stringify(n.x.data['name']) %>)">View Seat</button></td>
       </tr>
     <% }) %>
   </table>
 <% } %>
 </p3>
 <div id="dialogue"  style="display:none">
-<div id="busgrid"> choose a seat</div>
+<div id="busgrid" class="busDisplay"> choose a seat</div>
+<div style="float:right">
+  <button>procees</button>
+  </div></div>
 </div>
+
+
+<div class="passengerDetails" style="display:none">
+
+
+  <input type="hidden" name="source" value=<%= source %>>
+  <input type="hidden" name="destination" value=<%= destination %>>
+  <input type="hidden" name="bus" value=bus>
+  Name<input type="text" name="name"><br>
+  Contact   <input type="text" name="contact"><br>
+  <button id="submit">confirm booking</button>
+  <input type="submit" value="confirm booking">
+
+<button onclick="goBack()"> Go Back </button>
+</div>
+
 
 </body>
 </html>
