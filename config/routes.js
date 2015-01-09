@@ -10,7 +10,7 @@ module.exports = function routes() {
   this.match('/location/details','findbus#getbus',{via:'POST'});
   this.match('/location/seatLayout','findseat#getseat',{via:'POST'});
   this.match('/location/seatLayout/confirmBooking','bookseat#getDetails',{via:'POST'});
-
+  this.match('/confirmationPage','bookseat#viewdetails');
 }
 
 
