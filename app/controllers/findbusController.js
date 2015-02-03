@@ -7,20 +7,22 @@ findbusController.getbus= function(){
 	var neo4j = require('neo4j');
     var db = new neo4j.GraphDatabase('http://localhost:7474');
 
-
 var _self = this;
 var params = {
 
   initial: _self.req.body["source"],
-  final: _self.req.body["destination"]
+  final: _self.req.body["destination"],
+  date: new Date(_self.req.body["journeyDate"])
 //initial: _self.req.params.source,
 //final: _self.req.params.destination
 };
+console.log("params.date",params.date);
 _self.source=params.initial;
 _self.destination=params.final;
 
-var query='MATCH (b)-[:stop]->(c:location{name:"'+params.initial+'"}),(b)-[:stop]->(d:location{name:"'+params.final+'"}),(x:bus)-[:via]->(b) return x';
+var day=params.date.getDay();
 
+var query='MATCH (b)-[:stop]->(c:location{name:"'+params.initial+'"}),(b)-[:stop]->(d:location{name:"'+params.final+'"}),(x:bus)-[:via]->(b) return x';
 
 var store=[];
  _self.name=[];
