@@ -20,18 +20,26 @@ console.log("params.date",params.date);
 _self.source=params.initial;
 _self.destination=params.final;
 
-var day=params.date.getDay();
+ _self.day=params.date.getDay();
+console.log("current day",_self.day);
 
 var query='MATCH (b)-[:stop]->(c:location{name:"'+params.initial+'"}),(b)-[:stop]->(d:location{name:"'+params.final+'"}),(x:bus)-[:via]->(b) return x';
 
 var store=[];
- _self.name=[];
+var store2=[];
 db.query(query, {}, function (err, results) {
   if (err) throw err;
-       
-            store = results;
-            console.log(store); 
-              _self.array=store;
+  store = results;
+  console.log("initial results",store);
+       for(var i=0;i<store.length;i++)
+       { var arr=[];
+        arr=JSON.stringify(store[i].x.data['days']);
+        console.log("checking days",arr);
+       if(arr.indexOf(_self.day)!=-1)
+           store2.push(store[i]);
+          }  
+          console.log("final results",store2);
+              _self.array=store2;
             _self.render("pages/buslist");
   }); 
 }
